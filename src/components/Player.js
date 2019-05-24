@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import shaka from 'shaka-player'
 
 var manifestUri = '//storage.googleapis.com/shaka-demo-assets/angel-one/dash.mpd';
+var video = 'car-20120827-85.mp4';
 
 class Player extends Component {
 
@@ -11,8 +12,10 @@ class Player extends Component {
 
 		// Check to see if the browser supports the basic APIs Shaka needs.
 		if (shaka.Player.isBrowserSupported()) {
+			console.log("shaka.Player", shaka)
 		// Everything looks good!
 			this.initPlayer();
+			console.log("init", this.initPlayer)
 		} else {
 			// This browser does not have the minimum set of APIs we need.
 			console.error('Browser not supported!');
@@ -20,7 +23,9 @@ class Player extends Component {
 	}
 
 	initPlayer(){
-		var player = new shaka.Player(this.refs.video);
+		var player = new shaka.Player(this.refs.video); 
+		console.log("video", this.refs);
+		console.log("uri", manifestUri)
 
 		// Listen for error events.
 		player.addEventListener('error', this.onErrorEvent);
@@ -52,11 +57,16 @@ class Player extends Component {
    		return (
 	    	<div>
 		    	<h2>Player</h2>
-		    	<video ref="video"
-	           	width="640"
-	       			poster="//shaka-player-demo.appspot.com/assets/poster.jpg"
-	           	controls autoPlay>
-	       		</video>
+					<video ref="car-20120827-85.mp4"
+					width="640"
+					poster="//shaka-player-demo.appspot.com/assets/poster.jpg"
+					controls autoPlay>
+					</video>
+					<video ref="video"
+					width="640"
+					poster="//shaka-player-demo.appspot.com/assets/poster.jpg"
+					controls autoPlay>
+					</video>
 	    	</div>
 	    );
   	}
