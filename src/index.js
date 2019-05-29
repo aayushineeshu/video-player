@@ -1,15 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
-import Player from './components/Player';
+import Player from './pages/Player';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
-    <div>
-        <App />
         <Player />
-        </div>
             , document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change

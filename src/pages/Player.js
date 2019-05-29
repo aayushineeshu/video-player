@@ -1,5 +1,10 @@
-import React, { Component } from 'react'
-import shaka from 'shaka-player'
+import React, { Component } from 'react';
+import shaka from 'shaka-player';
+import { NavBar, ContentInset } from '../components/Layout';
+import { ProfileSummary } from '../components/Content';
+import { ReactComponent as Logo } from '../icons/logo.svg';
+import { ReactComponent as Search } from '../icons/search.svg';
+import { ReactComponent as Notification } from '../icons/notification.svg';
 
 var manifestUri = '//storage.googleapis.com/shaka-demo-assets/angel-one/dash.mpd';
 var video = 'car-20120827-85.mp4';
@@ -12,7 +17,7 @@ class Player extends Component {
 
 		// Check to see if the browser supports the basic APIs Shaka needs.
 		if (shaka.Player.isBrowserSupported()) {
-			console.log("shaka.Player", shaka)
+			console.log("shaka", shaka)
 		// Everything looks good!
 			this.initPlayer();
 			console.log("init", this.initPlayer)
@@ -24,15 +29,20 @@ class Player extends Component {
 
 	initPlayer(){
 		var player = new shaka.Player(this.refs.video); 
-		console.log("video", this.refs);
-		console.log("uri", manifestUri)
-
+		console.log("this.refs", this.refs);
+		console.log("manifestUri", manifestUri);
+		console.log("player", player.configure);
 		// Listen for error events.
 		player.addEventListener('error', this.onErrorEvent);
 
 		// Try to load a manifest.
 		// This is an asynchronous process.
 		player.load(manifestUri).then(function() {
+			player.configure({
+				streaming: {
+				  bufferingGoal: 100
+				}
+			  });
 			// This runs if the asynchronous load is successful.
 			console.log('The video has now been loaded!');
 		}).catch(this.onError);  // onError is executed if the asynchronous load fails.
@@ -52,21 +62,30 @@ class Player extends Component {
 		// unmount stuff
 		// kill stream hogging...:)
 	}
+	
 
 	render() {
+			var videos = [];
+			videos.push('//storage.googleapis.com/shaka-demo-assets/angel-one/dash.mpd');
+			console.log(videos);
+
    		return (
-	    	<div>
-		    	<h2>Player</h2>
-					<video ref="car-20120827-85.mp4"
-					width="640"
-					poster="//shaka-player-demo.appspot.com/assets/poster.jpg"
-					controls autoPlay>
-					</video>
+	    	<div style={{background: 'red'}}>
+				<NavBar 
+				 left={<Logo style={{height: '44px', width: '44px', justifySelf: 'flex-end'}} />}
+				 ternaryRight={<Search style={{height: '24px', width: '24px', fill: '#fff', justifySelf: 'flex-end'}}  />}
+				 secondaryRight={<Notification style={{height: '24px', width: '24px', fill: '#fff', paddingLeft: '30px'}}/>}
+				 right={<ProfileSummary style={{paddingLeft: '30px'}}/>}
+				/>
+				<ContentInset>
 					<video ref="video"
-					width="640"
+					width='100%'
 					poster="//shaka-player-demo.appspot.com/assets/poster.jpg"
-					controls autoPlay>
+					controls 
+					//autoPlay
+					>
 					</video>
+				</ContentInset>
 	    	</div>
 	    );
   	}
