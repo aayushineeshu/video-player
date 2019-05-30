@@ -80,19 +80,22 @@ class Player extends Component {
 					<MusicIcon />
 					<Heading>Latest Music Videos</Heading>
 					</HeaderWrapper>
-					<video ref="video"
+					{/* <video ref="video"
 						width='100%'
 						poster="https://media.wonderlandmagazine.com/uploads/2019/04/ROLLERCOASTER_CAMILA_06_070color.jpg"
 						controls
 					    autoPlay
-					/>
+					/> */}
 				<ContentInset>
-					<video ref="video"
+					{videos.map( content => (
+						<video ref="video"
+						key={content.id}
 						width='100%'
 						poster="https://media.wonderlandmagazine.com/uploads/2019/04/ROLLERCOASTER_CAMILA_06_070color.jpg"
 						controls
 					//autoPlay
 					/>
+					))}
 						<button style={{zIndex: '5'}}>Play</button>
 					{/* </video> */}
 				</ContentInset>
