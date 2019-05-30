@@ -69,3 +69,9 @@ export const ProfilePicImage = styled.img.attrs(props => ({
       </Wrapper>
     );
   };
+
+  export const Heading = styled.h1`
+    font-size: 2rem;
+    font-family: arial;
+    margin: 0rem;
+  `
