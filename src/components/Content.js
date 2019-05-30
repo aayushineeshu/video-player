@@ -73,5 +73,12 @@ export const ProfilePicImage = styled.img.attrs(props => ({
   export const Heading = styled.h1`
     font-size: 2rem;
     font-family: arial;
-    margin: 0rem;
+    margin: 0.25rem;
+    padding-left: 20px;
+  `;
+
+  export const HeaderWrapper = styled.div`
+    display: flex; 
+    flex-direction: row;
+    padding: 20px 0px 0px 20px;
   `
