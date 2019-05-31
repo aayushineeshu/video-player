@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import ReactPlayer from 'react-player';
+
 
 const Wrapper = styled.div`
   display: grid;
@@ -81,4 +83,8 @@ export const ProfilePicImage = styled.img.attrs(props => ({
     display: flex; 
     flex-direction: row;
     padding: 20px 0px 0px 20px;
+  `;
+
+  export const VideoPlayer = styled(ReactPlayer)`
+    
   `

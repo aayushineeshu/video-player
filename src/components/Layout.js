@@ -30,10 +30,12 @@ export const NavBar = ({
 );
 
 export const ContentInset = styled.section`
-  padding: 50px 18px 30px 18px;
-  max-width: 500px;
-  margin: 0 auto;
-  height: 100%;
   grid-area: content;
+  display: grid;
+  grid-gap: 1.5rem;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(2, 1fr);
+  padding: 20px 20px 20px 18px;
+  max-width: 500px;
 `;
 
